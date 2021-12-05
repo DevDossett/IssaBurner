@@ -1,0 +1,101 @@
+// Colors
+$darkBlue: #0091ad;
+$cyan: #6efafb;
+$latte: #fff4e4;
+$mustard: #f7e8a4;
+$pink: #ff57bb;
+
+//Fonts
+$HeaderFont: "Roboto Condensed", Sans-Serif;
+$BodyFont: "Cabin", Sans-Serif;
+
+// Universal Vars
+$size: 8;
+
+//Helper Functions
+@function s($m, $u: px) {
+  $result: $m * $size;
+  $result: $result + $u;
+  @return $result;
+}
+
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+//Mixins
+@mixin headerFont {
+  font-family: $HeaderFont;
+  font-size: s(10);
+}
+
+@mixin subHeader($sH: s(4)) {
+  font-family: $HeaderFont;
+  font-size: $sH;
+}
+
+//Imports
+@import "reset";
+
+//Modifiers
+.pink {
+  color: $pink;
+}
+.cyan {
+  color: $cyan;
+}
+
+// General Styles
+html {
+  background: $latte;
+  background-image: url("assets/memphis-mini-blue.png");
+}
+
+body {
+  max-width: 768px;
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+  @include headerFont();
+}
+
+h2 {
+  @include subHeader();
+}
+
+h3 {
+  @include subHeader(s(3));
+}
+
+// Title Styles
+.title {
+  margin-top: 50vh;
+  margin-bottom: 10vh;
+  &--cyan-shadow {
+    text-shadow: s(0.25) s(0.25) shade($cyan, 40%);
+  }
+  &--pink-shadow {
+    text-shadow: s(0.25) s(0.25) shade($pink, 40%);
+  }
+}
+
+// Splainer
+.splainer {
+  margin-top: s(8);
+  &--question {
+    margin: s(8) s(0);
+    h2 {
+      margin-bottom: s(3);
+      text-align: center;
+    }
+    h3 {
+      text-align: center;
+    }
+  }
+}
